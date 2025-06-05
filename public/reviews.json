@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "rating": 5,
+      "comment": "The service was absolutely fantastic! The staff went above and beyond to ensure all my needs were met. I felt valued as a customer, and the attention to detail was impressive. Highly recommend to anyone looking for a top-notch experience."
+    },
+    {
+      "id": 2,
+      "name": "Mark Smith",
+      "rating": 4,
+      "comment": "Overall, it was a great experience with friendly staff and prompt service. However, there were a few minor communication issues that could have been handled better. With a little improvement in that area, this would easily be a five-star review."
+    },
+    {
+      "id": 3,
+      "name": "Sophia Lee",
+      "rating": 3,
+      "comment": "The experience was fairly average. While the service was delivered on time, there was nothing particularly memorable or exceptional about it. It’s a decent option but left me wanting a bit more in terms of quality and customer care."
+    },
+    {
+      "id": 4,
+      "name": "John Doe",
+      "rating": 2,
+      "comment": "I was quite disappointed with the service provided. There were delays and the final outcome did not meet my expectations at all. I believe there is a lot of potential, but significant improvements are needed to make this a worthwhile option."
+    },
+    {
+      "id": 5,
+      "name": "Emma Brown",
+      "rating": 5,
+      "comment": "An absolutely amazing experience! From start to finish, everything was handled with the utmost professionalism and care. The team exceeded all expectations, and I couldn't be happier with the results. I’ll definitely be recommending this to my friends and family."
+    }
+  ]
+  
