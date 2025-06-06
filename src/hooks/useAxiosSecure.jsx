@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://e-commerce-project-server-seven.vercel.app",
 });
 
 const useAxiosSecure = () => {

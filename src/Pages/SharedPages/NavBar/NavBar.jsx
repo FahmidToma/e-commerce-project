@@ -33,9 +33,11 @@ const NavBar = () => {
       <li>
         <NavLink to="/shop/Pasta">Our Shop</NavLink>
       </li>
-      <li>
-        <NavLink to={dashboardPath}>Dashboard</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to={dashboardPath}>Dashboard</NavLink>
+        </li>
+      )}
       <li>
         <NavLink to="/dashboard/cart" className=" flex gap-0">
           <IoCart className="h-5 w-5"></IoCart>
@@ -58,6 +60,9 @@ const NavBar = () => {
           <li>
             <NavLink to="/login" className="hover:text-green-400">
               Login
+            </NavLink>
+            <NavLink to="/signup" className="hover:text-green-400">
+              /Sign up
             </NavLink>
           </li>
         </>
