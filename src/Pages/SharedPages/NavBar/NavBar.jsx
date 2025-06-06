@@ -61,6 +61,8 @@ const NavBar = () => {
             <NavLink to="/login" className="hover:text-green-400">
               Login
             </NavLink>
+          </li>
+          <li>
             <NavLink to="/signup" className="hover:text-green-400">
               /Sign up
             </NavLink>
