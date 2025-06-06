@@ -99,7 +99,7 @@ const Login = () => {
               <div className="form-control">
                 <h1 className="text-center font-semibold text-3xl">Login</h1>
                 <label className="label ">
-                  <span className="label-text text-white">Email</span>
+                  <span className="label-text ">Email</span>
                 </label>
                 <input
                   type="email"
@@ -111,7 +111,7 @@ const Login = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-white">Password</span>
+                  <span className="label-text ">Password</span>
                 </label>
                 <input
                   type="password"

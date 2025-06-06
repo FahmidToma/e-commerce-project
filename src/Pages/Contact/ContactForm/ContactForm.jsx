@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const ContactForm = () => {
   const axiosPublic = useAxiosPublic();
@@ -14,6 +15,15 @@ const ContactForm = () => {
     console.log(data);
     const contactRes = await axiosPublic.post("/contact", data);
     console.log(contactRes);
+    if (contactRes.data.insertedId) {
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Message is sent",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
     reset();
   };
 
@@ -28,7 +38,7 @@ const ContactForm = () => {
                 <input
                   type="text"
                   placeholder="your Name"
-                  className="input w-full mb-2 bg-black "
+                  className="input w-full mb-2  "
                   {...register("name", { required: true })}
                 />
               </div>
@@ -37,7 +47,7 @@ const ContactForm = () => {
                 <input
                   type="email"
                   placeholder="your mail"
-                  className="input my-2 w-full bg-black "
+                  className="input my-2 w-full "
                   {...register("email", { required: true })}
                 />
               </div>
@@ -48,7 +58,7 @@ const ContactForm = () => {
             <input
               type="text"
               placeholder="Your Number"
-              className="input w-full mb-2 bg-black "
+              className="input w-full mb-2 "
               {...register("number", {
                 required: true,
                 pattern: {
@@ -64,7 +74,7 @@ const ContactForm = () => {
           <div className="form-control">
             <label className="text-white p-2 font-medium">Message</label>
             <textarea
-              className="textarea w-full mb-2 bg-black "
+              className="textarea w-full mb-2  "
               placeholder="Type your message here..."
               rows="6"
               cols="50"
