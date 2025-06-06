@@ -48,8 +48,8 @@ const ContactUs = () => {
             </div>
             <div className="bg-slate-400 text-black text-center p-5 w-3/4 h-full mx-auto">
               <h1 className="text-lg font-medium">WORKING HOURS</h1>
-              <p>Sunday to Thrushday</p>
-              <p>9am - 7pm</p>
+              <p>Saturday to Friday</p>
+              <p>10am - 10pm</p>
             </div>
           </div>
         </div>

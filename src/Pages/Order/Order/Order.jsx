@@ -36,7 +36,7 @@ const Order = () => {
         subtitle={"Would you like to try a dish?"}
       ></Cover>
       <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
-        <TabList className="space-x-1 md:space-x-3 flex justify-center my-10">
+        <TabList className="space-x-1 overflow-x-auto whitespace-nowrap md:space-x-3 flex justify-center my-10">
           <Tab>Pizza</Tab>
           <Tab>Pasta</Tab>
           <Tab>Seafood</Tab>
