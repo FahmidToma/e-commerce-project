@@ -27,7 +27,7 @@ const CheckoutForm = () => {
       axiosSecure
         .post("/create-payment-intent", { price: totalPrice })
         .then(res => {
-          console.log(res.data.clientSecret);
+          //console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
@@ -50,9 +50,9 @@ const CheckoutForm = () => {
 
     if (error) {
       console.log("payment error", error);
-      console.log(
-        "stripe.createPaymentMethod failed, no paymentMethod generated."
-      );
+      //console.log(
+      //  "stripe.createPaymentMethod failed, no paymentMethod generated."
+      //);
       setError(error.message);
     } else {
       console.log("payment method", paymentMethod);
@@ -89,7 +89,7 @@ const CheckoutForm = () => {
           status: "pending",
         };
         const res = await axiosSecure.post("/payments", payment);
-        console.log("Payment saved", res.data);
+        // console.log("Payment saved", res.data);
         refetch();
         if (res.data?.paymentResult?.insertedId) {
           Swal.fire({

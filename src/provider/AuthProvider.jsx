@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
   //send email verification mail
   const emailVerification = () => {
     setLoading(true);
-    console.log("email verification from authprovider");
+    //console.log("email verification from authprovider");
     return sendEmailVerification(auth.currentUser);
   };
 
@@ -74,12 +74,12 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, user => {
-      console.log("current user", user);
+      //console.log("current user", user);
       setUser(user);
       if (user && user.emailVerified) {
         const userInfo = { email: user.email };
         axiosPublic.post("/jwt", userInfo).then(res => {
-          console.log(res.data);
+          //console.log(res.data);
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
             setLoading(false);

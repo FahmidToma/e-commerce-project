@@ -42,7 +42,7 @@ const AllUsers = () => {
 
   const handleMakeAdmin = user => {
     axiosSecure.patch(`/users/admin/${user._id}`).then(res => {
-      console.log(res.data);
+      //console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -66,7 +66,7 @@ const AllUsers = () => {
         <h1 className="text-2xl my-4">Total Users: {users.length}</h1>
 
         <div className="overflow-x-auto  bg-base-100">
-          <table className="table text-white">
+          <table className="table ">
             {/* head */}
             <thead className="bg-orange-400 text-white">
               <tr>

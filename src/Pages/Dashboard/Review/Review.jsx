@@ -16,7 +16,7 @@ const Review = () => {
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = async data => {
-    console.log(data);
+    //console.log(data);
     const review = {
       name: data.name,
       rating: data.rating,

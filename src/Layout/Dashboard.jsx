@@ -12,7 +12,7 @@ import { RiAdminLine } from "react-icons/ri";
 const Dashboard = () => {
   const [cart] = useCart();
   const [isAdmin] = useAdmin();
-  console.log("I am dashboard admin checker", isAdmin);
+  //console.log("I am dashboard admin checker", isAdmin);
 
   return (
     <div className="flex flex-col md:flex-row overflow-hidden md:min-h-screen">
@@ -148,7 +148,7 @@ const Dashboard = () => {
                 <li className="flex text-white p-2">
                   <MdRateReview className="text-2xl"></MdRateReview>
                   <NavLink
-                    to="/dashboard/bookings "
+                    to="/dashboard/bookings"
                     className={({ isActive }) =>
                       isActive ? "text-black" : "text-white"
                     }

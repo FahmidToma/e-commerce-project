@@ -12,7 +12,7 @@ const ContactForm = () => {
   } = useForm();
 
   const onSubmit = async data => {
-    console.log(data);
+    // console.log(data);
     const contactRes = await axiosPublic.post("/contact", data);
     console.log(contactRes);
     if (contactRes.data.insertedId) {

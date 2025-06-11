@@ -12,7 +12,7 @@ const AddItems = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const onSubmit = async data => {
-    console.log(data);
+    // console.log(data);
     const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
@@ -29,7 +29,7 @@ const AddItems = () => {
       };
 
       const menuRes = await axiosSecure.post("/menu", menuItem);
-      console.log(menuRes.data);
+      //console.log(menuRes.data);
       if (menuRes.data.insertedId) {
         reset();
         console.log("menu item is inserted successfully!");
@@ -58,7 +58,7 @@ const AddItems = () => {
             <input
               type="text"
               placeholder="Name of the recipe"
-              className="input w-full mb-2 text-white"
+              className="input w-full mb-2 "
               {...register("name", { required: true })}
             />
           </div>
@@ -69,7 +69,7 @@ const AddItems = () => {
               <select
                 defaultValue="default"
                 {...register("category", { required: true })}
-                className="select w-full my-2 text-white"
+                className="select w-full my-2 "
               >
                 <option disabled={true} value="default">
                   Pick a category
@@ -86,7 +86,7 @@ const AddItems = () => {
               <input
                 type="number"
                 placeholder="price"
-                className="input my-2 w-full text-white"
+                className="input my-2 w-full "
                 {...register("price", { required: true })}
               />
             </div>
@@ -96,7 +96,7 @@ const AddItems = () => {
               Recipe Details*
             </label>
             <textarea
-              className="textarea w-full mb-2 text-white"
+              className="textarea w-full mb-2 "
               placeholder="Recipe Details"
               {...register("recipe", { required: true })}
             ></textarea>

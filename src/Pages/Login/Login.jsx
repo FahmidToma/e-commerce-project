@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+//import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  //LoadCanvasTemplateNoReload,
-  validateCaptcha,
-} from "react-simple-captcha";
+//import {
+//  loadCaptchaEnginge,
+//  LoadCanvasTemplate,
+//  //LoadCanvasTemplateNoReload,
+//  validateCaptcha,
+//} from "react-simple-captcha";
 //import { useContext } from "react";
 //import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -19,22 +19,22 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [disabled, setDisabled] = useState(true);
+  //const [disabled, setDisabled] = useState(true);
 
   //for captcha generation
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
+  //useEffect(() => {
+  //  loadCaptchaEnginge(6);
+  //}, []);
 
   const handleLogin = e => {
     e.preventDefault();
     //const form=e.target;
     const email = e.target.email.value;
     const pass = e.target.password.value;
-    console.log(email, pass);
+    //console.log(email, pass);
     signInUser(email, pass)
       .then(result => {
-        console.log(result.user);
+        //console.log(result.user);
         if (!result.user.emailVerified) {
           alert("Your email is not verified! Please verify it at first");
         } else {
@@ -80,24 +80,26 @@ const Login = () => {
       });
   };
 
-  const handleCaptcha = e => {
-    const user_captcha_value = e.current.value;
-    if (validateCaptcha(user_captcha_value)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-    console.log(user_captcha_value);
-  };
+  //const handleCaptcha = e => {
+  //  const user_captcha_value = e.current.value;
+  //  if (validateCaptcha(user_captcha_value)) {
+  //    setDisabled(false);
+  //  } else {
+  //    setDisabled(true);
+  //  }
+  //  console.log(user_captcha_value);
+  //};
 
   return (
     <div className="text-center">
       <div className="hero bg-slate-600 min-h-screen">
         <div className="hero-content flex max-w-7xl bg-slate-500">
           <div className="card  w-full max-w-sm shrink-0 ">
-            <form onSubmit={handleLogin} className="card-body text-white">
+            <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
-                <h1 className="text-center font-semibold text-3xl">Login</h1>
+                <h1 className="text-center font-semibold text-white text-3xl">
+                  Login
+                </h1>
                 <label className="label ">
                   <span className="label-text ">Email</span>
                 </label>
@@ -126,30 +128,29 @@ const Login = () => {
                   </Link>
                 </label>
 
-                <label className="label">
+                {/*<label className="label">
                   <LoadCanvasTemplate />
                 </label>
-                <input
+               <input
                   type="text"
                   onBlur={handleCaptcha}
                   placeholder="type captcha"
                   id="user_captcha_value"
                   className="input input-bordered"
                   required
-                />
+                />*/}
               </div>
               <div className="form-control mt-3">
-                <button
-                  disabled={disabled}
-                  className="btn btn-sm bg-yellow-700 text-white border-none rounded-none"
-                >
+                <button className="btn btn-sm bg-yellow-700 text-white border-none rounded-none">
                   Sign in
                 </button>
               </div>
             </form>
             <p>
               <small>New here?</small>
-              <Link to="/signup">Create new account</Link>
+              <Link to="/signup" className="hover:underline">
+                Create new account
+              </Link>
             </p>
             <SocialLogin></SocialLogin>
           </div>

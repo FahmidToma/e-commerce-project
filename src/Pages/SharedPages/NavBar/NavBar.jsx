@@ -99,10 +99,10 @@ const NavBar = () => {
             {NavLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl text-white">Bristo Restaurant</a>
+        <a className="btn btn-ghost text-xl text-gray-300">Bristo Restaurant</a>
       </div>
       <div className="navbar-end hidden lg:flex ">
-        <ul className="menu menu-horizontal p-0 overflow-hidden flex-nowrap text-white">
+        <ul className="menu menu-horizontal p-0 overflow-hidden flex-nowrap text-gray-300">
           {NavLinks}
         </ul>
       </div>

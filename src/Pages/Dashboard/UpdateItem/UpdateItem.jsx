@@ -17,7 +17,7 @@ const UpdateItem = () => {
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = async data => {
-    console.log(data);
+    // console.log(data);
     const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
@@ -34,7 +34,7 @@ const UpdateItem = () => {
       };
 
       const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
-      console.log(menuRes.data);
+      // console.log(menuRes.data);
       if (menuRes.data.modifiedCount > 0) {
         //update er por notun value diye updateItem form fill up kora
         //if you want you can make it blank
@@ -55,7 +55,7 @@ const UpdateItem = () => {
         });
       }
     }
-    console.log(res.data);
+    //console.log(res.data);
   };
 
   return (
@@ -72,7 +72,7 @@ const UpdateItem = () => {
             <input
               type="text"
               defaultValue={name}
-              className="input w-full mb-2 text-white"
+              className="input w-full mb-2 "
               {...register("name", { required: true })}
             />
           </div>
@@ -83,7 +83,7 @@ const UpdateItem = () => {
               <select
                 defaultValue={category}
                 {...register("category", { required: true })}
-                className="select w-full my-2 text-white"
+                className="select w-full my-2 "
               >
                 <option disabled={true} value="default">
                   Pick a category
@@ -100,7 +100,7 @@ const UpdateItem = () => {
               <input
                 type="number"
                 defaultValue={price}
-                className="input my-2 w-full text-white"
+                className="input my-2 w-full "
                 {...register("price", { required: true })}
               />
             </div>
@@ -110,7 +110,7 @@ const UpdateItem = () => {
               Recipe Details*
             </label>
             <textarea
-              className="textarea w-full mb-2 text-white"
+              className="textarea w-full mb-2 "
               defaultValue={recipe}
               {...register("recipe", { required: true })}
             ></textarea>
@@ -118,7 +118,7 @@ const UpdateItem = () => {
           <div className="mb-2 w-1/3 form-control">
             <input
               type="file"
-              className="file-input file-input-sm text-white"
+              className="file-input file-input-sm "
               {...register("image", { required: true })}
             />
           </div>

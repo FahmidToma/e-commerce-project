@@ -70,32 +70,60 @@ export const router = createBrowserRouter([
       //user routes
       {
         path: "userHome",
-        element: <UserHome></UserHome>,
+        element: (
+          <PrivateRoute>
+            <UserHome></UserHome>
+          </PrivateRoute>
+        ),
       },
       {
         path: "cart",
-        element: <Cart></Cart>,
+        element: (
+          <PrivateRoute>
+            <Cart></Cart>
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment",
-        element: <Payment></Payment>,
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>,
+        element: (
+          <PrivateRoute>
+            <PaymentHistory></PaymentHistory>
+          </PrivateRoute>
+        ),
       },
       {
         path: "addReview",
-        element: <Review></Review>,
+        element: (
+          <PrivateRoute>
+            <Review></Review>
+          </PrivateRoute>
+        ),
       },
 
       {
         path: "reservation",
-        element: <Reservation></Reservation>,
+        element: (
+          <PrivateRoute>
+            <Reservation></Reservation>
+          </PrivateRoute>
+        ),
       },
       {
         path: "bookings",
-        element: <MyBookings></MyBookings>,
+        element: (
+          <PrivateRoute>
+            <MyBookings></MyBookings>
+          </PrivateRoute>
+        ),
       },
       //admin routes
       {

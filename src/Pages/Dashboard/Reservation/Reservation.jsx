@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 //import DatePicker from "react-datepicker";
 //import "react-datepicker/dist/react-datepicker.css";
 
@@ -18,7 +19,7 @@ const Reservation = () => {
   const today = new Date().toISOString().split("T")[0];
 
   const onSubmit = async data => {
-    console.log("Reservation submitted:", data);
+    //console.log("Reservation submitted:", data);
     // sending it to the database
     const reservationData = {
       email: user.email,
@@ -31,6 +32,17 @@ const Reservation = () => {
     };
     const res = await axiosSecure.post("/reservation", reservationData);
     console.log(res);
+    if (res.data.insertedId) {
+      reset();
+
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Request for reservation is sent",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
     reset();
   };
 
@@ -46,7 +58,7 @@ const Reservation = () => {
           className="space-y-4 grid grid-cols-1 md:grid-cols-2 gap-4 "
         >
           <div>
-            <label className="text-white font-medium">Date</label>
+            <label className=" font-medium">Date</label>
             <input
               type="date"
               min={today}
@@ -58,7 +70,7 @@ const Reservation = () => {
             )}
           </div>
           <div>
-            <label className="text-white font-medium">Time</label>
+            <label className="font-medium">Time</label>
             <input
               type="time"
               min="10:00"
@@ -72,7 +84,7 @@ const Reservation = () => {
           </div>
 
           <div>
-            <label className="font-medium text-white">Number of Guests</label>
+            <label className="font-medium ">Number of Guests</label>
             <input
               type="number"
               {...register("guests", {
@@ -87,7 +99,7 @@ const Reservation = () => {
           </div>
 
           <div>
-            <label className="font-medium text-white">Name</label>
+            <label className="font-medium ">Name</label>
             <input
               type="text"
               {...register("name", { required: "Name is required" })}
@@ -99,7 +111,7 @@ const Reservation = () => {
           </div>
 
           <div>
-            <label className="font-medium text-white">Phone</label>
+            <label className="font-medium ">Phone</label>
             <input
               type="tel"
               {...register("phone", {
@@ -117,7 +129,7 @@ const Reservation = () => {
           </div>
 
           <div>
-            <label className="font-medium text-white">Email</label>
+            <label className="font-medium ">Email</label>
             <input
               type="email"
               {...register("email", {

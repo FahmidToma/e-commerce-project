@@ -10,9 +10,9 @@ const useCart = () => {
     queryKey: ["cart", user?.email],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
-      console.log(`Fetching cart for ${user.email}`);
+      // console.log(`Fetching cart for ${user.email}`);
       const res = await axiosSecure.get(`/carts?email=${user.email}`);
-      console.log("API response ", res.data);
+      //console.log("API response ", res.data);
       return res.data;
     },
   });

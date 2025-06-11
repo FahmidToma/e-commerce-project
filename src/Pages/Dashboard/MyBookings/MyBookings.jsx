@@ -1,19 +1,47 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const MyBookings = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: bookings = [] } = useQuery({
-    queryKey: ["reservation"],
+  const { user } = useAuth();
+  const { data: bookings = [], refetch } = useQuery({
+    queryKey: ["reservation", user.email],
     queryFn: async () => {
-      const res = await axiosSecure.get("/reservation");
-      console.log(res);
+      const res = await axiosSecure.get(`/reservation/${user.email}`);
+      // console.log(res);
       return res.data;
     },
   });
 
-  console.log(bookings);
+  const handleDeleteBooking = id => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(result => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/reservation/${id}`).then(res => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  // console.log(bookings);
   return (
     <div>
       <SectionTitle
@@ -50,7 +78,10 @@ const MyBookings = () => {
                     <td>{booking.guests}</td>
                     <td>{booking.status}</td>
                     <td>
-                      <button className="btn btn-error btn-xs text-white rounded-none">
+                      <button
+                        onClick={() => handleDeleteBooking(booking._id)}
+                        className="btn btn-error btn-xs text-white rounded-none"
+                      >
                         cancel
                       </button>
                     </td>

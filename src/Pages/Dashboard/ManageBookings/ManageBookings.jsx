@@ -1,17 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 import { FcApproval } from "react-icons/fc";
+import Swal from "sweetalert2";
 
 const ManageBookings = () => {
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
   const { data: bookings = [], refetch } = useQuery({
     queryKey: ["reservation"],
     queryFn: async () => {
       const res = await axiosSecure.get("/reservation");
-      console.log(res);
+      //console.log(res);
       return res.data;
     },
   });
@@ -22,6 +24,16 @@ const ManageBookings = () => {
       const res = await axiosSecure.patch(`/reservation/${id}`, {
         status: "cancelled",
       });
+      axiosSecure.delete(`/reservation/${id}`).then(res => {
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      });
       console.log(res);
     } catch (error) {
       console.error("Cancellation failed", error);
@@ -29,15 +41,21 @@ const ManageBookings = () => {
   };
 
   const handleApprove = async id => {
-    console.log("please approve");
+    // console.log("please approve");
     try {
       const res = await axiosSecure.patch(`/reservation/${id}`, {
-        status: "confirmed !",
+        status: "confirmed!",
       });
       if (res.data.modifiedCount > 0) {
         refetch();
+        queryClient.invalidateQueries({ queryKey: ["reservation"] });
+        if (bookings.email) {
+          queryClient.invalidateQueries({
+            queryKey: ["reservation", bookings.email],
+          });
+        }
       }
-      console.log(res);
+      //console.log(res);
     } catch (error) {
       console.error("Approval failed", error);
     }
@@ -54,7 +72,7 @@ const ManageBookings = () => {
         Total Requests for Reservation: {bookings.length}
       </h1>
       <div className="overflow-x-auto rounded-none bg-base-100 m-4">
-        <table className="table table-xs text-white">
+        <table className="table table-xs ">
           {/* head */}
           <thead className="bg-orange-400 text-white">
             <tr>
@@ -77,7 +95,7 @@ const ManageBookings = () => {
                   <td>{booking.time}</td>
                   <td>{booking.guests}</td>
                   <td>
-                    {booking.status === "confirmed !" ? (
+                    {booking.status === "confirmed!" ? (
                       <FcApproval className="text-2xl text-green-400"></FcApproval>
                     ) : (
                       <button

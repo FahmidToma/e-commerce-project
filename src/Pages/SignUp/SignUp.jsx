@@ -7,8 +7,9 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
-  const { createUser, emailVerification, updateUserProfile } =
+  const { createUser, emailVerification, updateUserProfile, signOutUser } =
     useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -20,11 +21,13 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const onSubmit = data => {
-    console.log(data.email, data.password);
+    //console.log(data.email, data.password);
     createUser(data.email, data.password).then(result => {
       console.log(result.user);
+      signOutUser();
+      reset();
       emailVerification().then(() => {
-        console.log("successfully sent email");
+        //console.log("successfully sent email");
         alert("verification email sent. Please check your inbox");
       });
       updateUserProfile(data.name)
@@ -34,10 +37,10 @@ const SignUp = () => {
             name: data.name,
             email: data.email,
           };
-          useAxiosPublic.post("/users", userInfo).then(res => {
+          axiosPublic.post("/users", userInfo).then(res => {
             if (res.data.insertedId) {
-              console.log("user info saved in the database successfully!");
-              console.log("Updated successfully");
+              // console.log("user info saved in the database successfully!");
+              // console.log("Updated successfully");
               reset();
               navigate("/");
             }
@@ -57,12 +60,11 @@ const SignUp = () => {
         <div className="hero bg-slate-600 min-h-screen">
           <div className="hero-content flex max-w-6xl bg-slate-500">
             <div className="card  w-full max-w-sm shrink-0 ">
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="card-body text-white"
-              >
+              <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
                 <div className="form-control">
-                  <h1 className="text-center font-bold text-3xl">Sign Up</h1>
+                  <h1 className="text-center font-bold text-white text-3xl">
+                    Sign Up
+                  </h1>
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">Name</span>
@@ -136,7 +138,10 @@ const SignUp = () => {
               </form>
               <p>
                 <small>Already have an account?</small>
-                <Link to="/login"> Log in</Link>
+                <Link to="/login" className="hover:underline">
+                  {" "}
+                  Log in
+                </Link>
               </p>
               <p className="my-3">Or sign up with</p>
               <SocialLogin></SocialLogin>

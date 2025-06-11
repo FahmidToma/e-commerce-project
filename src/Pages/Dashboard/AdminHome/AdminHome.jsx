@@ -24,7 +24,7 @@ const AdminHome = () => {
     queryKey: ["admin-stats"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin-stats");
-      console.log(res.data);
+      //console.log(res.data);
       return res.data;
     },
   });
@@ -33,12 +33,12 @@ const AdminHome = () => {
     queryKey: ["order-stats"],
     queryFn: async () => {
       const res = await axiosSecure.get("/order-stats");
-      console.log("Response of order-stats", res.data);
+      // console.log("Response of order-stats", res.data);
       return res.data;
     },
   });
 
-  console.log("I am chart Data", chartData);
+  //console.log("I am chart Data", chartData);
   // bar graph info
   const getPath = (x, y, width, height) => {
     return `M${x},${y + height}C${x + width / 3},${y + height} ${
@@ -87,7 +87,7 @@ const AdminHome = () => {
   const pieChartData = chartData.map(data => {
     return { name: data.category, value: data.revenue };
   });
-  console.log("pieChart data", pieChartData);
+  //console.log("pieChart data", pieChartData);
 
   //if (isLoading || !chartData) {
   //  return <div className="text-center mt-10">Loading stats...</div>;
@@ -97,11 +97,11 @@ const AdminHome = () => {
     queryKey: ["payments"],
     queryFn: async () => {
       const res = await axiosSecure.get("/payments");
-      console.log("Response of payments", res.data);
+      //console.log("Response of payments", res.data);
       return res.data;
     },
   });
-  console.log("I am paymentData", paymentData);
+  //console.log("I am paymentData", paymentData);
 
   return (
     <div className="bg-gray-200 min-h-screen p-2 text-black">
@@ -181,13 +181,15 @@ const AdminHome = () => {
           </Pie>
         </PieChart>
       </div>
+
+      {/* pending order table */}
       <div className="mt-7">
         <h1 className=" text-2xl text-center  mb-5">
           Your pending orders ({paymentData.length})
         </h1>
 
         <div className="overflow-x-auto  bg-base-100 m-4">
-          <table className="table text-white">
+          <table className="table">
             {/* head */}
             <thead className="bg-orange-400 text-white">
               <tr>
