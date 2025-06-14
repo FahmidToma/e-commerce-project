@@ -1,9 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-
 import { FcApproval } from "react-icons/fc";
-import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { io } from "socket.io-client";
 import { ToastContainer, toast } from "react-toastify";
@@ -23,7 +21,7 @@ const ManageBookings = () => {
 
     socket.on("reservationUpdated", data => {
       console.log("Reservation Updated:", data);
-      toast.info(`Reservation status changed to ${data.status}`);
+      toast.success(`Reservation status changed to ${data.status}`);
       //when admin updates reservation  this part tells the get 'reservation' route that it has changed
       queryClient.invalidateQueries(["reservation"]);
     });
@@ -52,11 +50,6 @@ const ManageBookings = () => {
       axiosSecure.delete(`/reservation/${id}`).then(res => {
         if (res.data.deletedCount > 0) {
           refetch();
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
-          });
         }
       });
       console.log(res);
@@ -138,7 +131,7 @@ const ManageBookings = () => {
           </tbody>
         </table>
       </div>
-      <ToastContainer position="top-center" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };
