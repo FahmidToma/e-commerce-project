@@ -11,7 +11,7 @@ const useMenu = () => {
   //
   //
   //useEffect(()=>{
-  //    fetch('https://e-commerce-project-server-seven.vercel.app/menu')
+  //    fetch('https://e-commerce-project-server-demz.onrender.com/menu')
   //    .then(res => res.json())
   //    .then(data=> {setMenu(data);
   //        //console.log(data);

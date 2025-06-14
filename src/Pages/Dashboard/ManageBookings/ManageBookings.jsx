@@ -4,10 +4,35 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 import { FcApproval } from "react-icons/fc";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
+import { io } from "socket.io-client";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const socket = io("https://e-commerce-project-server-demz.onrender.com");
 
 const ManageBookings = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    socket.on("newReservation", () => {
+      //when new reservation is made by the user this part tells the get 'reservation' route that fetch the newbie
+      queryClient.invalidateQueries(["reservation"]);
+    });
+
+    socket.on("reservationUpdated", data => {
+      console.log("Reservation Updated:", data);
+      toast.info(`Reservation status changed to ${data.status}`);
+      //when admin updates reservation  this part tells the get 'reservation' route that it has changed
+      queryClient.invalidateQueries(["reservation"]);
+    });
+
+    return () => {
+      socket.off("newReservation");
+      socket.off("reservationUpdated");
+    };
+  }, [queryClient]);
 
   const { data: bookings = [], refetch } = useQuery({
     queryKey: ["reservation"],
@@ -19,7 +44,7 @@ const ManageBookings = () => {
   });
 
   const handleCancel = async id => {
-    console.log("please cancel");
+    //console.log("please cancel");
     try {
       const res = await axiosSecure.patch(`/reservation/${id}`, {
         status: "cancelled",
@@ -48,12 +73,6 @@ const ManageBookings = () => {
       });
       if (res.data.modifiedCount > 0) {
         refetch();
-        queryClient.invalidateQueries({ queryKey: ["reservation"] });
-        if (bookings.email) {
-          queryClient.invalidateQueries({
-            queryKey: ["reservation", bookings.email],
-          });
-        }
       }
       //console.log(res);
     } catch (error) {
@@ -119,6 +138,7 @@ const ManageBookings = () => {
           </tbody>
         </table>
       </div>
+      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 };

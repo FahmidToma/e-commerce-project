@@ -3,10 +3,15 @@ import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import { useEffect } from "react";
+import { io } from "socket.io-client";
+
+const socket = io("https://e-commerce-project-server-demz.onrender.com");
 
 const MyBookings = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+
   const { data: bookings = [], refetch } = useQuery({
     queryKey: ["reservation", user.email],
     queryFn: async () => {
@@ -15,6 +20,22 @@ const MyBookings = () => {
       return res.data;
     },
   });
+
+  useEffect(() => {
+    socket.on("reservationUpdated", data => {
+      console.log("User Received Update:", data);
+      // When admin changes status, refetch the user's booking data
+      const isMyBooking = bookings.some(booking => booking._id === data.id);
+      if (isMyBooking) {
+        console.log("My booking updated, refetching...");
+        refetch();
+      }
+    });
+
+    return () => {
+      socket.off("reservationUpdated");
+    };
+  }, [bookings, refetch]);
 
   const handleDeleteBooking = id => {
     Swal.fire({

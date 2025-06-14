@@ -13,7 +13,7 @@ const Testimonials = () => {
   const [reviews, setReview] = useState([]);
 
   useEffect(() => {
-    fetch("https://e-commerce-project-server-seven.vercel.app/reviews")
+    fetch("https://e-commerce-project-server-demz.onrender.com/reviews")
       .then(res => res.json())
       .then(data => setReview(data));
   }, []);

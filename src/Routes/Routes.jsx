@@ -167,7 +167,7 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://e-commerce-project-server-seven.vercel.app/menu/${params.id}`
+            `https://e-commerce-project-server-demz.onrender.com/menu/${params.id}`
           ),
       },
       {
