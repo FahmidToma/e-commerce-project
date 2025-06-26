@@ -12,7 +12,6 @@ const AddItems = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const onSubmit = async data => {
-    // console.log(data);
     const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
@@ -29,7 +28,6 @@ const AddItems = () => {
       };
 
       const menuRes = await axiosSecure.post("/menu", menuItem);
-      //console.log(menuRes.data);
       if (menuRes.data.insertedId) {
         reset();
         console.log("menu item is inserted successfully!");

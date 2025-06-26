@@ -8,7 +8,6 @@ const Menu = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const displayMenu = isExpanded ? menu : menu.slice(0, 6);
-  // console.log(displayMenu);
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
   };

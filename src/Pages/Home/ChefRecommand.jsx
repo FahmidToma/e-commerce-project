@@ -4,7 +4,6 @@ import useFilteredFood from "../../hooks/useFilteredFood";
 
 const ChefRecommand = () => {
   const [offered, salads] = useFilteredFood();
-  //console.log(salads,drinks);
 
   return (
     <section className="mb-10">

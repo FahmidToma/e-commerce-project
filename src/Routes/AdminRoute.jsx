@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
+import { FadeLoader } from "react-spinners";
 
 const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -8,7 +9,11 @@ const AdminRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading || isAdminLoading) {
-    return <h1>Loading</h1>;
+    return (
+      <div className="flex justify-center items-center h-full">
+        <FadeLoader color="#ff8c42" aria-label="Loading Spinner"></FadeLoader>
+      </div>
+    );
   }
   if (user && isAdmin == true) {
     return children;

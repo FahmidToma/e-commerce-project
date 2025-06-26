@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-//import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import {
   BarChart,
@@ -17,14 +16,12 @@ const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const AdminHome = () => {
-  //const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const { data: stats = {} } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin-stats");
-      //console.log(res.data);
       return res.data;
     },
   });
@@ -33,12 +30,10 @@ const AdminHome = () => {
     queryKey: ["order-stats"],
     queryFn: async () => {
       const res = await axiosSecure.get("/order-stats");
-      // console.log("Response of order-stats", res.data);
       return res.data;
     },
   });
 
-  //console.log("I am chart Data", chartData);
   // bar graph info
   const getPath = (x, y, width, height) => {
     return `M${x},${y + height}C${x + width / 3},${y + height} ${
@@ -87,21 +82,14 @@ const AdminHome = () => {
   const pieChartData = chartData.map(data => {
     return { name: data.category, value: data.revenue };
   });
-  //console.log("pieChart data", pieChartData);
-
-  //if (isLoading || !chartData) {
-  //  return <div className="text-center mt-10">Loading stats...</div>;
-  //}
 
   const { data: paymentData = [] } = useQuery({
     queryKey: ["payments"],
     queryFn: async () => {
       const res = await axiosSecure.get("/payments");
-      //console.log("Response of payments", res.data);
       return res.data;
     },
   });
-  //console.log("I am paymentData", paymentData);
 
   return (
     <div className="bg-gray-200 min-h-screen p-2 text-black">
@@ -184,35 +172,42 @@ const AdminHome = () => {
 
       {/* pending order table */}
       <div className="mt-7">
-        <h1 className=" text-2xl text-center  mb-5">
-          Your pending orders ({paymentData.length})
-        </h1>
-
-        <div className="overflow-x-auto  bg-base-100 m-4">
-          <table className="table">
-            {/* head */}
-            <thead className="bg-orange-400 text-white">
-              <tr>
-                <th>Email</th>
-                <th>TransactionId</th>
-                <th>Date</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              {paymentData &&
-                paymentData.map(payment => (
-                  <tr key={payment._id}>
-                    <th>{payment.email}</th>
-                    <td>{payment.transactionId}</td>
-                    <td>{payment.date}</td>
-                    <td>{payment.status}</td>
+        {paymentData.length == 0 ? (
+          <h1 className="text-red-500 text-2xl">
+            You have got no order to manage
+          </h1>
+        ) : (
+          <>
+            <h1 className=" text-2xl text-center  mb-5">
+              Your pending orders ({paymentData.length})
+            </h1>
+            <div className="overflow-x-auto  bg-base-100 m-4">
+              <table className="table">
+                {/* head */}
+                <thead className="bg-orange-400 text-white">
+                  <tr>
+                    <th>Email</th>
+                    <th>TransactionId</th>
+                    <th>Date</th>
+                    <th>Status</th>
                   </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
+                </thead>
+                <tbody>
+                  {/* row 1 */}
+                  {paymentData &&
+                    paymentData.map(payment => (
+                      <tr key={payment._id}>
+                        <th>{payment.email}</th>
+                        <td>{payment.transactionId}</td>
+                        <td>{payment.date}</td>
+                        <td>{payment.status}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

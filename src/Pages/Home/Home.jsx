@@ -1,22 +1,21 @@
-import React from 'react';
-import Banner from './Banner';
-import Catagory from './Catagory';
-import About from './About';
-import Callus from './Callus';
-import Menu from './Menu';
-import ChefRecommand from './ChefRecommand';
-import Featured from './Featured/Featured';
-import Testimonials from './Testimonials/Testimonials';
-import { Helmet } from 'react-helmet';
+import Banner from "./Banner";
+import Catagory from "./Catagory";
+import About from "./About";
+import Callus from "./Callus";
+import Menu from "./Menu";
+import ChefRecommand from "./ChefRecommand";
+import Featured from "./Featured/Featured";
+import Testimonials from "./Testimonials/Testimonials";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Home</title>
+        <title>Al Dente | Home</title>
       </Helmet>
       <Banner></Banner>
-      <div className='max-w-screen-lg mx-auto'>
+      <div className="max-w-screen-lg mx-auto">
         <Catagory></Catagory>
         <Menu></Menu>
         <About></About>

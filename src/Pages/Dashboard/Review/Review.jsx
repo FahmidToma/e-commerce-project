@@ -34,7 +34,7 @@ const Review = () => {
         heading={"REVIEW US"}
         subheading={"How's the experience?"}
       ></SectionTitle>
-      <div className="bg-slate-500 p-5 mx-3 max-w-[750px] ">
+      <div className=" p-5 mx-3 max-w-[750px] ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1 className="text-2xl text-black font-medium">Rate Us!</h1>
           <div className="form-control my-3 ">
@@ -55,20 +55,20 @@ const Review = () => {
             <input
               type="text"
               placeholder="Your Name"
-              className="input w-full mb-2"
+              className="input w-full mb-2 border border-gray-400"
               {...register("name", { required: true })}
             />
           </div>
 
           <div className="form-control">
             <textarea
-              className="textarea w-full mb-2"
+              className="textarea border border-gray-400 w-full mb-2"
               placeholder="Your comment"
               {...register("comment", { required: true })}
             ></textarea>
           </div>
 
-          <button className="btn px-6 border-none rounded-none bg-gradient-to-r">
+          <button className="btn px-6 border-none rounded-none bg-orange-400 text-white">
             Add Review
           </button>
         </form>

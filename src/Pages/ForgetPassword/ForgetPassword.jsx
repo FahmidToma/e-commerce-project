@@ -1,10 +1,8 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
-//import { useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
   const { resetPassword } = useAuth();
-  // const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -15,7 +13,6 @@ const ForgetPassword = () => {
     resetPassword(data.email)
       .then(() => {
         alert("reset password email is sent. check your inbox!");
-        //navigate("/login");
       })
       .catch(error => {
         const errorMessage = error.message;

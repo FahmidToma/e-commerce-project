@@ -4,7 +4,6 @@ import foodcard from "../../assets/foodcard.jpg";
 const FoodCard = ({ item }) => {
   const { name, recipe, price } = item;
 
-  //console.log(item);
   return (
     <div className=" bg-slate-200 w-80 shadow-xl mb-4 ">
       <img src={foodcard} alt="food" />

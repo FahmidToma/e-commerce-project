@@ -6,7 +6,6 @@ import useCart from "../../hooks/useCart";
 
 const AddToBtn = ({ btntext, item }) => {
   const { _id, name, img, price } = item;
-  //console.log(item, _id);
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -51,8 +50,8 @@ const AddToBtn = ({ btntext, item }) => {
         }
       });
     }
-    console.log(food);
   };
+
   return (
     <div className="flex flex-col items-center my-7">
       <button

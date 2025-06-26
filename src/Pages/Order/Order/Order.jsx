@@ -10,25 +10,24 @@ import { Helmet } from "react-helmet";
 
 const Order = () => {
   const categories = [
-    "Pizza",
-    "Pasta",
-    "Seafood",
-    "Salad",
-    "Drinks",
-    "Dessert",
-    "Offer",
+    "pizza",
+    "pasta",
+    "seafood",
+    "salad",
+    "drinks",
+    "dessert",
+    "offer",
   ];
   const { category } = useParams();
-  const initialIndex = categories.indexOf(category);
+  const initialIndex = categories.indexOf(category?.toLowerCase());
   const [tabIndex, setTabIndex] = useState(initialIndex);
-  //console.log(category);
   const [offered, salads, pizzas, pastas, desserts, seafoods, drinks] =
     useFilteredFood();
 
   return (
     <div className="max-w-screen-lg mx-auto">
       <Helmet>
-        <title>Bistro Boss | Our Shop</title>
+        <title>Al Dente | Our Shop</title>
       </Helmet>
       <Cover
         img={order}
@@ -36,7 +35,7 @@ const Order = () => {
         subtitle={"Would you like to try a dish?"}
       ></Cover>
       <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
-        <TabList className="space-x-1 overflow-x-auto whitespace-nowrap  md:space-x-3 flex justify-center my-10">
+        <TabList className="space-x-1 overflow-x-auto whitespace-nowrap text-orange-400 md:space-x-3 md:overflow-y-hidden flex justify-start md:justify-center my-10">
           <Tab>Pizza</Tab>
           <Tab>Pasta</Tab>
           <Tab>Seafood</Tab>

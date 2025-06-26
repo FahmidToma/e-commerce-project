@@ -19,13 +19,11 @@ const UserHome = () => {
       return res.data;
     },
   });
-  //console.log(reviews);
 
   const { data: bookings = [] } = useQuery({
     queryKey: ["reservation", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/reservation/${user.email}`);
-      // console.log(res);
       return res.data;
     },
   });
@@ -34,7 +32,6 @@ const UserHome = () => {
     queryKey: ["payments", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payments/${user.email}`);
-      //console.log(res);
       return res.data;
     },
   });

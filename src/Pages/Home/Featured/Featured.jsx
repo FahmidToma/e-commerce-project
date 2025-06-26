@@ -20,9 +20,9 @@ const Featured = () => {
               esse unde voluptas, cupiditate ratione voluptate quod inventore
               laborum saepe fugit, qui alias architecto.
             </p>
-            <button className="btn border-0 border-y-4 btn-outline border-black text-white">
-              Normal
-            </button>
+            <p className="text-xl font-medium text-white">
+              Dine in to grab it!
+            </p>
           </div>
         </div>
       </div>

@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
-  //console.log(cart);
   const totalPrice = Number(
     cart.reduce((total, item) => total + item.price, 0)
   ).toFixed(2);

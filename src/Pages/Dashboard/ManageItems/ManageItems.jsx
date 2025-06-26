@@ -5,9 +5,10 @@ import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import { SkeletonCard } from "@/Components/ui/skeleton";
 
 const ManageItems = () => {
-  const [menu, , refetch] = useMenu();
+  const [menu, isLoading, refetch] = useMenu();
   const axiosSecure = useAxiosSecure();
 
   const handleDelete = item => {
@@ -21,9 +22,7 @@ const ManageItems = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async result => {
       if (result.isConfirmed) {
-        //console.log(item._id);
         const res = await axiosSecure.delete(`/menu/${item._id}`);
-        //console.log(res);
         if (res.data.deletedCount > 0) {
           refetch();
           Swal.fire({
@@ -37,6 +36,14 @@ const ManageItems = () => {
   };
 
   const handleManage = () => {};
+
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        {" "}
+        <SkeletonCard></SkeletonCard>
+      </div>
+    );
 
   return (
     <div className="bg-gray-200 min-h-screen p-2 text-black">

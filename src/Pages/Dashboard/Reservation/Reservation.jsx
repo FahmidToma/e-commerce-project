@@ -3,8 +3,6 @@ import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
-//import DatePicker from "react-datepicker";
-//import "react-datepicker/dist/react-datepicker.css";
 
 const Reservation = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,7 +17,6 @@ const Reservation = () => {
   const today = new Date().toISOString().split("T")[0];
 
   const onSubmit = async data => {
-    //console.log("Reservation submitted:", data);
     // sending it to the database
     const reservationData = {
       email: user.email,
@@ -149,7 +146,7 @@ const Reservation = () => {
           <div className="md:col-span-2">
             <button
               type="submit"
-              className="btn btn-primary rounded w-full mt-4"
+              className="btn bg-orange-400  text-white rounded w-full mt-4"
             >
               Book a table
             </button>

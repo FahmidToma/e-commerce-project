@@ -34,10 +34,7 @@ const UpdateItem = () => {
       };
 
       const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
-      // console.log(menuRes.data);
       if (menuRes.data.modifiedCount > 0) {
-        //update er por notun value diye updateItem form fill up kora
-        //if you want you can make it blank
         reset({
           name: " ",
           category: "",
@@ -55,7 +52,6 @@ const UpdateItem = () => {
         });
       }
     }
-    //console.log(res.data);
   };
 
   return (

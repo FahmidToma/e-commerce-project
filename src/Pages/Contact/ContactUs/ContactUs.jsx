@@ -11,7 +11,7 @@ const ContactUs = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Contact</title>
+        <title>Al Dente | Contact</title>
       </Helmet>
       <Cover
         img={contact}

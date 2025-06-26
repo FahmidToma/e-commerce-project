@@ -9,7 +9,6 @@ const Main = () => {
     location.pathname.includes("signup") ||
     location.pathname.includes("forgetPassword");
 
-  //console.log(location);
   return (
     <div className="overflow-x-hidden">
       {noHeadFoot || <NavBar></NavBar>}

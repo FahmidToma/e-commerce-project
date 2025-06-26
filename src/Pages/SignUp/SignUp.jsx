@@ -21,13 +21,11 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const onSubmit = data => {
-    //console.log(data.email, data.password);
     createUser(data.email, data.password).then(result => {
       console.log(result.user);
       signOutUser();
       reset();
       emailVerification().then(() => {
-        //console.log("successfully sent email");
         alert("verification email sent. Please check your inbox");
       });
       updateUserProfile(data.name)
@@ -39,8 +37,6 @@ const SignUp = () => {
           };
           axiosPublic.post("/users", userInfo).then(res => {
             if (res.data.insertedId) {
-              // console.log("user info saved in the database successfully!");
-              // console.log("Updated successfully");
               reset();
               navigate("/");
             }
@@ -54,7 +50,7 @@ const SignUp = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Sign Up</title>
+        <title>Al Dente | Sign Up</title>
       </Helmet>
       <div className="text-center">
         <div className="hero bg-slate-600 min-h-screen">

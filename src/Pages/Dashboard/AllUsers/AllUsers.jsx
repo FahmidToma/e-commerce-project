@@ -4,10 +4,15 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { FaUser } from "react-icons/fa";
+import { SkeletonCard } from "@/Components/ui/skeleton";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [], refetch } = useQuery({
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
@@ -42,7 +47,6 @@ const AllUsers = () => {
 
   const handleMakeAdmin = user => {
     axiosSecure.patch(`/users/admin/${user._id}`).then(res => {
-      //console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
@@ -56,6 +60,14 @@ const AllUsers = () => {
     });
   };
 
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        {" "}
+        <SkeletonCard></SkeletonCard>
+      </div>
+    );
+
   return (
     <div className="bg-gray-200 min-h-screen p-2 text-black">
       <SectionTitle
@@ -63,51 +75,59 @@ const AllUsers = () => {
         subheading={"How many??"}
       ></SectionTitle>
       <div className="px-7 mt-11">
-        <h1 className="text-2xl my-4">Total Users: {users.length}</h1>
+        {users.length == 0 ? (
+          <h1 className="text-3xl font-medium text-center text-red-500 mt-3">
+            No user for you to display
+          </h1>
+        ) : (
+          <>
+            <h1 className="text-2xl my-4">Total Users: {users.length}</h1>
 
-        <div className="overflow-x-auto  bg-base-100">
-          <table className="table ">
-            {/* head */}
-            <thead className="bg-orange-400 text-white">
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => (
-                <tr key={user._id} className="p-2">
-                  <th>{index + 1}</th>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>
-                    {user.role === "admin" ? (
-                      "Admin"
-                    ) : (
-                      <button
-                        onClick={() => handleMakeAdmin(user)}
-                        className="btn  btn-sm"
-                      >
-                        <FaUser className="text-red-600 text-2xl "></FaUser>
-                      </button>
-                    )}
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => handleDeleteUser(user)}
-                      className="btn btn-sm"
-                    >
-                      <RiDeleteBin6Fill className="text-red-600 text-2xl"></RiDeleteBin6Fill>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            <div className="overflow-x-auto  bg-base-100">
+              <table className="table ">
+                {/* head */}
+                <thead className="bg-orange-400 text-white">
+                  <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map((user, index) => (
+                    <tr key={user._id} className="p-2">
+                      <th>{index + 1}</th>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        {user.role === "admin" ? (
+                          "Admin"
+                        ) : (
+                          <button
+                            onClick={() => handleMakeAdmin(user)}
+                            className="btn  btn-sm"
+                          >
+                            <FaUser className="text-red-600 text-2xl "></FaUser>
+                          </button>
+                        )}
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => handleDeleteUser(user)}
+                          className="btn btn-sm"
+                        >
+                          <RiDeleteBin6Fill className="text-red-600 text-2xl"></RiDeleteBin6Fill>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
