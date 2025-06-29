@@ -11,6 +11,7 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const stripe = useStripe();
+
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();

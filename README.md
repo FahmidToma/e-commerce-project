@@ -1,6 +1,6 @@
 # MERN E-Commerce Webapp
 
-A full-stack end-to-end e-commerce web application built with **MERN STACK** (MongoDB, Express, React, Node.js), featuring **Firebase Authentication**, **Stripe PAyment Integration**, **Role-based Dashboards** and real-time updates using **Socket.IO**.
+A full-stack end-to-end e-commerce web application built with **MERN STACK** (MongoDB, Express, React, Node.js), featuring **Firebase Authentication**, **Stripe Payment Integration**, **Role-based Dashboards** and real-time updates using **Socket.IO**.
 
 ## Live Demo
 
@@ -43,3 +43,11 @@ A full-stack end-to-end e-commerce web application built with **MERN STACK** (Mo
 ### Landing Page
 
 ![Home Page](./Screenshots/Home.png)
+
+### Admin Dashboard
+
+![Admin Dashboard](./Screenshots/AdminDashboard.png)
+
+### Cart Page
+
+![Cart Page](./Screenshots/CartPage.png)

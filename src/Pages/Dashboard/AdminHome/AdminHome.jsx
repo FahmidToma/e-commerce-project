@@ -33,6 +33,7 @@ const AdminHome = () => {
       return res.data;
     },
   });
+  console.log(chartData);
 
   // bar graph info
   const getPath = (x, y, width, height) => {
@@ -140,9 +141,15 @@ const AdminHome = () => {
             shape={<TriangleBar />}
             label={{ position: "top" }}
           >
-            {chartData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-            ))}
+            {chartData == 0 ? (
+              <p className="text-red-500 text-center p-3">
+                No data to show on bar
+              </p>
+            ) : (
+              chartData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+              ))
+            )}
           </Bar>
         </BarChart>
       </div>
@@ -160,12 +167,18 @@ const AdminHome = () => {
             fill="#8884d8"
             dataKey="value"
           >
-            {pieChartData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
+            {pieChartData == 0 ? (
+              <p className="text-red-500 text-center p-3">
+                No data to show on bar
+              </p>
+            ) : (
+              pieChartData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))
+            )}
           </Pie>
         </PieChart>
       </div>

@@ -5,7 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 
 const AddToBtn = ({ btntext, item }) => {
-  const { _id, name, img, price } = item;
+  const { _id, name, image, price } = item;
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -19,7 +19,7 @@ const AddToBtn = ({ btntext, item }) => {
         foodId: _id,
         email: user.email,
         name,
-        image: img,
+        image: image,
         price,
       };
       axiosSecure.post("carts", cartItem).then(res => {

@@ -23,6 +23,7 @@ import ForgetPassword from "../Pages/ForgetPassword/ForgetPassword";
 import Reservation from "../Pages/Dashboard/Reservation/Reservation";
 import MyBookings from "../Pages/Dashboard/MyBookings/MyBookings";
 import ManageBookings from "../Pages/Dashboard/ManageBookings/ManageBookings";
+import NotFound from "@/Pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
       },
     ],
   },
@@ -178,6 +183,14 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
+      },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound></NotFound>,
   },
 ]);
