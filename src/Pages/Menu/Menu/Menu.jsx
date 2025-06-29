@@ -7,11 +7,12 @@ import cover2 from "../../../assets/cover2.jpg";
 import cover3 from "../../../assets/cover3.jpg";
 import cover4 from "../../../assets/cover4.jpg";
 import cover5 from "../../../assets/cover5.jpg";
+import cover6 from "../../../assets/cover6.jpg";
 import useFilteredFood from "../../../hooks/useFilteredFood";
 import MenuCategory from "../MenuCategory/MenuCategory";
 
 const Menu = () => {
-  const [offered, salads, pizzas, pastas, desserts, seafoods] =
+  const [offered, salads, pizzas, pastas, desserts, seafoods, drinks] =
     useFilteredFood();
 
   return (
@@ -76,6 +77,15 @@ const Menu = () => {
           }
         ></Cover>
         <MenuCategory items={seafoods} title={"Seafood"}></MenuCategory>
+
+        <Cover
+          img={cover6}
+          title={"DRINKS"}
+          subtitle={
+            "Pizza that is made using layers of meat,cheese, sauce, capsicum and other stuffs"
+          }
+        ></Cover>
+        <MenuCategory items={drinks} title={"Drink"}></MenuCategory>
       </div>
     </div>
   );

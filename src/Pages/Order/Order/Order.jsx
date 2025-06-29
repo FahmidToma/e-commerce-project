@@ -14,7 +14,7 @@ const Order = () => {
     "pasta",
     "seafood",
     "salad",
-    "drinks",
+    "drink",
     "dessert",
     "offer",
   ];
@@ -25,7 +25,7 @@ const Order = () => {
     useFilteredFood();
 
   return (
-    <div className="max-w-screen-lg mx-auto">
+    <div>
       <Helmet>
         <title>Al Dente | Our Shop</title>
       </Helmet>
@@ -34,38 +34,40 @@ const Order = () => {
         title={"our shop"}
         subtitle={"Would you like to try a dish?"}
       ></Cover>
-      <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
-        <TabList className="space-x-1 overflow-x-auto whitespace-nowrap text-orange-400 md:space-x-3 md:overflow-y-hidden flex justify-start md:justify-center my-10">
-          <Tab>Pizza</Tab>
-          <Tab>Pasta</Tab>
-          <Tab>Seafood</Tab>
-          <Tab>Salad</Tab>
-          <Tab>Drinks</Tab>
-          <Tab>Dessert</Tab>
-          <Tab>Offer</Tab>
-        </TabList>
-        <TabPanel>
-          <OrderTab items={pizzas}></OrderTab>
-        </TabPanel>
-        <TabPanel>
-          <OrderTab items={pastas}></OrderTab>
-        </TabPanel>
-        <TabPanel>
-          <OrderTab items={seafoods}></OrderTab>
-        </TabPanel>
-        <TabPanel>
-          <OrderTab items={salads}></OrderTab>
-        </TabPanel>
-        <TabPanel>
-          <OrderTab items={drinks}></OrderTab>
-        </TabPanel>
-        <TabPanel>
-          <OrderTab items={desserts}></OrderTab>
-        </TabPanel>
-        <TabPanel>
-          <OrderTab items={offered}></OrderTab>
-        </TabPanel>
-      </Tabs>
+      <div className="max-w-screen-lg mx-auto">
+        <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
+          <TabList className="space-x-1 overflow-x-auto whitespace-nowrap text-orange-400 md:space-x-3 md:overflow-y-hidden flex justify-start md:justify-center my-10">
+            <Tab>Pizza</Tab>
+            <Tab>Pasta</Tab>
+            <Tab>Seafood</Tab>
+            <Tab>Salad</Tab>
+            <Tab>Drinks</Tab>
+            <Tab>Dessert</Tab>
+            <Tab>Offer</Tab>
+          </TabList>
+          <TabPanel>
+            <OrderTab items={pizzas}></OrderTab>
+          </TabPanel>
+          <TabPanel>
+            <OrderTab items={pastas}></OrderTab>
+          </TabPanel>
+          <TabPanel>
+            <OrderTab items={seafoods}></OrderTab>
+          </TabPanel>
+          <TabPanel>
+            <OrderTab items={salads}></OrderTab>
+          </TabPanel>
+          <TabPanel>
+            <OrderTab items={drinks}></OrderTab>
+          </TabPanel>
+          <TabPanel>
+            <OrderTab items={desserts}></OrderTab>
+          </TabPanel>
+          <TabPanel>
+            <OrderTab items={offered}></OrderTab>
+          </TabPanel>
+        </Tabs>
+      </div>
     </div>
   );
 };

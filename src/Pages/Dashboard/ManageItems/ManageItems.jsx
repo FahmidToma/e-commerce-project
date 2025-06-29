@@ -65,43 +65,49 @@ const ManageItems = () => {
             </tr>
           </thead>
           <tbody>
-            {menu.map((item, index) => (
-              <tr key={item._id}>
-                <td>{index + 1}</td>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src={item.image}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+            {menu.length == 0 ? (
+              <h1 className="text-red-500 text-2xl p-3 font-medium">
+                No item in the menu to show
+              </h1>
+            ) : (
+              menu.map((item, index) => (
+                <tr key={item._id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle h-12 w-12">
+                          <img
+                            src={item.image}
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-                <td className="font-semibold text-xl">{item.name}</td>
-                <td>$ {item.price}</td>
-                <td>
-                  <Link to={`/dashboard/updateItem/${item._id}`}>
+                  </td>
+                  <td className="font-semibold text-xl">{item.name}</td>
+                  <td>$ {item.price}</td>
+                  <td>
+                    <Link to={`/dashboard/updateItem/${item._id}`}>
+                      <button
+                        onClick={() => handleManage(item._id)}
+                        className="btn btn-ghost btn-xs"
+                      >
+                        <FaEdit className="text-yellow-500 text-2xl"></FaEdit>
+                      </button>
+                    </Link>
+                  </td>
+                  <td>
                     <button
-                      onClick={() => handleManage(item._id)}
+                      onClick={() => handleDelete(item)}
                       className="btn btn-ghost btn-xs"
                     >
-                      <FaEdit className="text-yellow-500 text-2xl"></FaEdit>
+                      <RiDeleteBin6Fill className="text-red-600 text-2xl"></RiDeleteBin6Fill>
                     </button>
-                  </Link>
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleDelete(item)}
-                    className="btn btn-ghost btn-xs"
-                  >
-                    <RiDeleteBin6Fill className="text-red-600 text-2xl"></RiDeleteBin6Fill>
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
           {/* foot */}
         </table>

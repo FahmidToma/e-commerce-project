@@ -62,7 +62,7 @@ const NavBar = () => {
         <div className="px-1">
           <NavLink
             to="/"
-            className="text-2xl text-white flex-shrink-0 whitespace-nowrap"
+            className="text-2xl font-medium text-white flex-shrink-0 whitespace-nowrap"
           >
             Al Dente
           </NavLink>
@@ -215,7 +215,7 @@ const NavBar = () => {
             {user ? (
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 px-3 pt-y  text-sm font-medium text-white hover:text-orange-400"
+                className="flex items-center gap-2 px-3 pt-y  text-sm font-medium text-gray-700 hover:text-orange-400"
               >
                 Logout
               </button>

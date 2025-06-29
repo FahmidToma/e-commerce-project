@@ -38,8 +38,13 @@ const ContactForm = () => {
                   type="text"
                   placeholder="your Name"
                   className="input w-full mb-2  "
-                  {...register("name", { required: true })}
+                  {...register("name", {
+                    required: { value: true, message: "Fill your name" },
+                  })}
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-sm">{errors.name.message}</p>
+                )}
               </div>
               <div className=" form-control">
                 <label className="text-white font-medium">Email</label>
@@ -49,6 +54,9 @@ const ContactForm = () => {
                   className="input my-2 w-full "
                   {...register("email", { required: true })}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm">{errors.email.message}</p>
+                )}
               </div>
             </div>
           </div>

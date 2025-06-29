@@ -8,7 +8,12 @@ import Swal from "sweetalert2";
 const image_hosting_key = import.meta.env.VITE_image_hosting_key;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const AddItems = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const onSubmit = async data => {
@@ -34,7 +39,7 @@ const AddItems = () => {
         Swal.fire({
           position: "top-center",
           icon: "success",
-          title: `${data.name}added to the menu!`,
+          title: `${data.name} is added to the menu!`,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -57,8 +62,11 @@ const AddItems = () => {
               type="text"
               placeholder="Name of the recipe"
               className="input w-full mb-2 "
-              {...register("name", { required: true })}
+              {...register("name", { required: "name is required" })}
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
+            )}
           </div>
 
           <div className="flex gap-3 justify-around ">
@@ -66,7 +74,7 @@ const AddItems = () => {
               <label className="text-black  font-medium">Category*</label>
               <select
                 defaultValue="default"
-                {...register("category", { required: true })}
+                {...register("category", { required: "category is required" })}
                 className="select w-full my-2 "
               >
                 <option disabled={true} value="default">
@@ -74,10 +82,17 @@ const AddItems = () => {
                 </option>
                 <option>Salad</option>
                 <option>Pizza</option>
-                <option>Soup</option>
+                <option>Pasta</option>
                 <option>Dessert</option>
-                <option>Drinks</option>
+                <option>Drink</option>
+                <option>Seafood</option>
+                <option>Offer</option>
               </select>
+              {errors.category && (
+                <p className="text-red-500 text-sm">
+                  {errors.category.message}
+                </p>
+              )}
             </div>
             <div className=" w-full form-control">
               <label className="text-black font-medium">Price*</label>
@@ -85,8 +100,11 @@ const AddItems = () => {
                 type="number"
                 placeholder="price"
                 className="input my-2 w-full "
-                {...register("price", { required: true })}
+                {...register("price", { required: "price is required" })}
               />
+              {errors.price && (
+                <p className="text-red-500 text-sm">{errors.price.message}</p>
+              )}
             </div>
           </div>
           <div className="form-control">
@@ -96,15 +114,21 @@ const AddItems = () => {
             <textarea
               className="textarea w-full mb-2 "
               placeholder="Recipe Details"
-              {...register("recipe", { required: true })}
+              {...register("recipe", { required: "please input details" })}
             ></textarea>
+            {errors.recipe && (
+              <p className="text-red-500 text-sm">{errors.recipe.message}</p>
+            )}
           </div>
           <div className="mb-2 w-1/3 form-control">
             <input
               type="file"
               className="file-input file-input-sm text-white"
-              {...register("image", { required: true })}
+              {...register("image", { required: "file is required" })}
             />
+            {errors.image && (
+              <p className="text-red-500 text-sm">{errors.image.message}</p>
+            )}
           </div>
           <button className="btn px-6 border-none rounded-none bg-gradient-to-r">
             Add Item <FaUtensils></FaUtensils>
