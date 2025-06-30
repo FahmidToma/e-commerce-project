@@ -49,13 +49,13 @@ const Reservation = () => {
         heading={"Reservations"}
         subheading={"Book a table"}
       ></SectionTitle>
-      <div className=" flex justify-center  mx-3 p-4">
+      <div className=" flex justify-center  mx-3 p-4 ">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-4 grid grid-cols-1 md:grid-cols-2 gap-4 "
         >
-          <div>
-            <label className=" font-medium">Date</label>
+          <div className=" p-2 flex flex-col justify-between">
+            <label className=" font-medium m-0">Date</label>
             <input
               type="date"
               min={today}
@@ -66,8 +66,8 @@ const Reservation = () => {
               <p className="text-red-500 text-sm">{errors.date.message}</p>
             )}
           </div>
-          <div>
-            <label className="font-medium">Time</label>
+          <div className=" p-2 flex flex-col justify-between">
+            <label className="font-medium m-0">Time</label>
             <input
               type="time"
               min="10:00"

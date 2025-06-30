@@ -32,6 +32,7 @@ Frontend is hosted on firebase and Backend is deployed on Render.
 - Manage products (Add/Edit/Delete)
 - Manage users (promote/demote roles)-----not demote
 - View overall stats (orders, revenue, users)
+- To have admin view (Log in with)--> **Email: fahmida.02.khatun@gmail.com, Password: Admin125%**
 
 ### General
 
